@@ -1,4 +1,4 @@
-#SHIFT + R to open Script Runner Package
+#ALT + R to open Script Runner Package
 #print "Hello World" #print - prints text on sameline
 #puts "Giraffe Academy" #puts - prints text and newline
 ##
