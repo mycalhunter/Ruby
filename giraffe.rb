@@ -271,8 +271,353 @@
 #################################
 ######### Guessing Game #########
 #################################
-secret_word = "giraffe"
-guess = ""
+#secret_word = "giraffe"
+#guess = ""
+#guess_count = 0
+#max_count = 3
+#out_of_guesses = false
+
+#puts "test"
+
+#while guess != secret_word and !out_of_guesses
+#  if guess_count < max_count
+#    puts "Enter a guess: "
+#    guess = gets.chomp()
+#    guess_count += 1
+#  else guess_count > 3
+#    out_of_guesses = true
+#  end
+#end
+
+#if out_of_guesses
+#  puts "You lost"
+#else
+#  puts "You guessed correct"
+#end
+
+
+
+#################################
+########### For Loop ############
+#################################
+#friends = ["Kevin", "Jim", "Bob"]
+
+#for friend in friends #for each iteration in friends Array, output iteration value
+#  puts friend
+#end
+
+#friends.each do |friend| #for each iteration in friends Array, output iteration value
+#  puts friend
+#end
+
+#for index in 0..5 #loops from 0 to 5
+#  puts index
+#end
+
+#6.times do |index| #loops through index 6 times
+#  puts index
+#end
+
+
+
+#################################
+####### Exponent Method #########
+#################################
+=begin
+def pow(base_num, pow_num) exponent pow() method for positive integers. 
+  result = 1
+  pow_num.times do |index|
+    result = result * base_num
+  end
+  return result
+end
+puts pow(3, 2)
+=end
+
+
+
+#################################
+########### Comments ############
+#################################
+
+# - single line comment
+
+=begin
+multiline
+comment
+=end
+
+
+#################################
+########### Read Files ##########
+#################################
+
+#file = File.open("employees.txt", "r")
+# puts file.read
+#file.close() #close file so it is not eating up memory
+
+
+ #File.open("employees.txt", "r") do |file| #storing employees.txt inside |file| variable  
+  #puts file #prints #<File:0x00000000051094b0> file meta data
+  #puts file.read() #prints contents of file
+  #puts file.read().include? "Jim" #returns true/false if Jim is in file
+  #puts file.readline()
+  #puts file.readchar()
+  #puts file.readchar()
+  #puts file.readchar()
+  #for line in file.readlines()
+  #  puts "Name: " + line
+  #end
+#end
+
+
+
+
+#################################
+########## Write Files ##########
+#################################
+# r =read, r+ = read/write, w = write, w+ = write/read, a = append
+=begin
+File.open("employees.txt", "a") do |file|
+  #file.write("Oscar, Accountant") #appends onto last character
+  file.write("\nOscar, Accountant")
+end
+
+File.open("employees.txt", "r+") do |file|
+  #file.write("Oscar, Accountant") #appends onto last character
+  file.readline("\nOscar, Accountant")
+  file.write("\nOverridden")
+end
+=end
+
+
+=begin
+File.open("index.html", "w") do |file|
+  #file.write("Oscar, Accountant") #appends onto last character
+  file.write("<h1>Hello</h1>")
+end
+
+
+File.open("employees.txt", "w") do |file|
+  #file.write("Oscar, Accountant") #appends onto last character
+  file.write("\nDwight, Sales")
+end
+=end
+
+
+
+
+#################################
+########## Error Rescue #########
+#################################
+=begin
+#puts 10/0
+lucky_nums = [4, 6, 6, 8]
+#lucky_nums["dog"]
+begin
+  #lucky_nums["dog"]
+  num = 10 / 0
+rescue ZeroDivisionError => e
+  puts e
+rescue TypeError => e
+  puts e
+end
+=end
+
+
+
+
+#################################
+######## Class / Objects ########
+#################################
+
+#class = custom data type. A blueprint/template for data
+=begin
+class Book # <= Book is now custom data type
+    attr_accessor :title, :author, :pages #all books will have title, author, and pages.
+    def initialize(title, author, pages)
+      @title = title # @title = :title
+      @author = author # @author = :author
+      @pages = pages # @pages = :pages
+      puts title + " by " + author + " with " + pages + " pages has been created."
+    end
+end
+
+#object is instance of a book, or instance of a Class
+puts "Enter book title: "
+bookTitle = gets.chomp()
+puts "Enter book author: "
+bookAuthor = gets.chomp()
+puts "Enter book page count: "
+bookPages = gets.chomp().to_s
+book1 = Book.new(bookTitle, bookAuthor, bookPages) #telling ruby to create a new book and pass information into initalize method in class Book
+
+book2 = Book.new()
+book2.title = "Lord of the Rings"
+book2.author = "Tolkein"
+book2.pages = 500
+
+puts book2.title
+puts book2.author
+=end
+
+
+
+
+#################################
+####### Initialize Method #######
+#################################
+=begin
+class Book # <= Book is now custom data type
+    attr_accessor :title, :author, :pages #all books will have title, author, and pages.
+    def initialize()
+      puts "Creating Book"
+    end
+end
+=end
+
+
+
+
+#################################
+######## Object Methods #########
+#################################
+=begin
+class Student
+    attr_accessor :name, :major, :gpa
+    def initialize(name, major, gpa)
+      @name = name
+      @major = major
+      @gpa = gpa
+    end
+    
+    def has_honors #has no parameters so doesn't need ()
+      if @gpa >= 3.5
+        return true
+      end
+      return false
+    end
+    
+end
+
+student1 = Student.new("Jim", "Business", 2.6)
+student2 = Student.new("Pam", "Art", 3.6)
+
+puts student1.has_honors
+puts student2.has_honors
+=end
+
+
+
+
+#################################
+####### Building a Quiz #########
+#################################
+=begin
+class Question
+  attr_accessor :prompt, :answer
+  def initialize(prompt, answer)
+    @prompt = prompt
+    @answer = answer
+  end
+end
+
+p1 = "What color are apples?\n(a)red\n(b)purple\n(c)orange"
+p2 = "What color are bananas?\n(a)green\n(b)blue\n(c)yellow"
+p3 = "What color are pears?\n(a)black\n(b)green\n(c)teal"
+
+#array of question/answer pairs
+questions = [
+  Question.new(p1, "a"),
+  Question.new(p2, "c"),
+  Question.new(p3, "b"),
+]
+
+def run_test(questions)
+  answer = ""
+  score = 0
+  for question in questions
+    puts question.prompt
+    answer = gets.chomp()
+    if answer == question.answer
+      score += 1
+    end
+  end
+  puts score.to_s + "/" + questions.length.to_s
+end
+
+run_test(questions)
+=end
+
+
+
+
+#################################
+######### Inheritance ###########
+#################################
+=begin
+class Chef
+  def make_chicken
+    puts "The chef makes chicken"
+  end
+  def make_salad
+    puts "The chef makes salad"
+  end
+  def make_special_dish
+    puts "The chef makes bbq ribs"
+  end
+end
+
+class ItalianChef < Chef # < Chef = including class Chef functionality inside ItalianChef class
+  def make_special_dish
+    puts "The chef makes eggplant parm"
+  end
+  def make_pasta
+    puts "The chef makes pasta"
+  end
+end 
+
+
+chef = Chef.new()
+chef.make_special_dish
+
+chef2 = ItalianChef.new()
+chef2.make_special_dish
+chef2.make_pasta
+=end
+
+
+
+
+#################################
+############ Modules ############
+#################################
+#require "useful_tools.rb"
+#require_relative "useful_tools.rb"
+#include Tools
+#Tools.sayhi("Mike")
+
+
+
+
+
+#################################
+#### Interactive Ruby (iRB) #####
+#################################
+# open command prompt
+# check for irb version, input irb -v
+# input irb to use irb (use for testing out small ruby code, not ideal for major projects)
+
+
+
+
+
+
+
+
+
+
+
 
 
 
